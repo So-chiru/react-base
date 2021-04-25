@@ -87,7 +87,9 @@ module.exports = (_, argv) => {
       historyApiFallback: true
     }
 
-    return smp.wrap(options)
+    // return smp.wrap(options)
+    // 현재는 버그로 인해 사용 불가능.
+    // https://github.com/stephencookdev/speed-measure-webpack-plugin/issues/167
   }
 
   return options
