@@ -1,5 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
-import sagaMiddleware from './sagas'
+import sagaMiddleware, { rootSaga } from './sagas'
 
 // 최상위 Reducer. 하위 Reducer들을 여기다 집어넣습니다.
 //
