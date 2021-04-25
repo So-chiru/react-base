@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 
 import App from './components/app'
-import store from './store/index' // 리듀서들을 모아둔 최상위 리듀서입니다.
+import store from './store/index'
 
 import './styles/index.scss' // Global Style
 

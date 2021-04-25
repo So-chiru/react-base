@@ -5,7 +5,7 @@ const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-// const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const { DefinePlugin } = require('webpack')
 
 const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
@@ -45,35 +45,29 @@ module.exports = (_, argv) => {
         {
           test: /\.(sa|sc|c)ss$/,
           use: [MiniCssExtractPlugin.loader, 'css-loader', 'fast-sass-loader']
-        },
-        {
-          test: /\.(ico|png|jpg|jpeg|json)?$/,
-          loader: 'file-loader',
-          options: {
-            name: '[hash].[ext]'
-          }
         }
       ]
     },
     plugins: [
+      new CleanWebpackPlugin(),
+      new MiniCssExtractPlugin({
+        filename: '[name].[hash].css',
+        ignoreOrder: true
+      }),
+      new HtmlWebpackPlugin({
+        template: './views/index.html',
+        filename: 'index.html'
+      }),
       // new DefinePlugin({
       //   'process.env.ENV_VALUE': JSON.stringify(process.env.ENV_VALUE)
       // }),
-      // new CleanWebpackPlugin(),
-      new CopyWebpackPlugin({
-        patterns: [
-          {
-            from: 'public'
-          }
-        ]
-      }),
-      new MiniCssExtractPlugin({
-        filename: '[name].[hash].css'
-      }),
-      new HtmlWebpackPlugin({
-        template: './public/index.html',
-        filename: 'index.html'
-      })
+      // new CopyWebpackPlugin({
+      //   patterns: [
+      //     {
+      //       from: 'public'
+      //     }
+      //   ]
+      // })
     ],
     optimization: {
       splitChunks: {
