@@ -15,7 +15,4 @@ export function * rootSaga () {
   yield all([defaultSaga()])
 }
 
-// 최상위 saga를 실행합니다.
-sagaMiddleware.run(rootSaga)
-
 export default sagaMiddleware

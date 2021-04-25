@@ -17,4 +17,8 @@ export type RootState = ReturnType<typeof reducers>
 
 // react-redux 저장소를 만듭니다. 이 변수는 <Provider>의 store={}로 전달되어 사용됩니다.
 const store = createStore(reducers, applyMiddleware(sagaMiddleware))
+
+// 최상위 saga를 실행합니다.
+sagaMiddleware.run(rootSaga)
+
 export default store
